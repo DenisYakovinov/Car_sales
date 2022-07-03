@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS cars (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR
+);
