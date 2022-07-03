@@ -18,20 +18,30 @@ public class Car {
     @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "fk_carId_to_engine"))
     private Engine engine;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "history_owner", joinColumns = {
             @JoinColumn(name = "driver_id", nullable = false, updatable = false)},
             inverseJoinColumns = {
                     @JoinColumn(name = "car_id", nullable = false, updatable = false)})
     private Set<Driver> drivers = new HashSet<>();
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "car_brand_id")
+    private CarBrand carBrand;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "car_body_type_id")
+    private CarBodyType carBodyType;
+
     public Car() {
 
     }
 
-    public Car(String name, Engine engine) {
-        this.id = id;
+    public Car(String name, Engine engine, CarBrand carBrand, CarBodyType carBodyType) {
         this.name = name;
+        this.engine = engine;
+        this.carBrand = carBrand;
+        this.carBodyType = carBodyType;
     }
 
     public long getId() {
@@ -56,6 +66,22 @@ public class Car {
 
     public Set<Driver> getDrivers() {
         return drivers;
+    }
+
+    public CarBrand getCarBrand() {
+        return carBrand;
+    }
+
+    public void setCarBrand(CarBrand carBrand) {
+        this.carBrand = carBrand;
+    }
+
+    public CarBodyType getCarBodyType() {
+        return carBodyType;
+    }
+
+    public void setCarBodyType(CarBodyType carBodyType) {
+        this.carBodyType = carBodyType;
     }
 
     public void addDriver(Driver driver) {

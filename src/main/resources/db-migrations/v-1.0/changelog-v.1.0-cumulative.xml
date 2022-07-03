@@ -9,4 +9,9 @@
     <include file="02-changeset-create-engine-table.xml" relativeToChangelogFile="true"/>
     <include file="03-changeset-create-drivers-table.xml" relativeToChangelogFile="true"/>
     <include file="04-changeset-create-history-owner-table.xml" relativeToChangelogFile="true"/>
+    <include file="05-changeset-create-users-table.xml" relativeToChangelogFile="true"/>
+    <include file="06-changeset-create-car-brand-table.xml" relativeToChangelogFile="true"/>
+    <include file="07-changeset-create-car-body-table.xml" relativeToChangelogFile="true"/>
+    <include file="08-changeset-create-advertisement-table.xml" relativeToChangelogFile="true"/>
+    <include file="09-changeset-add-fk-columns-to-cars.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
