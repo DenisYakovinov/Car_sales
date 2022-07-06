@@ -26,9 +26,10 @@ public class CarStoreImpl extends GenericPersistence implements CarStore {
     @Override
     public boolean replace(int id, Car car) {
         return genericPersist(session ->
-                session.createQuery("update Car c set c.name= :cName, c.carBrand = :cBrand, c.carBodyType = :cType,"
+                session.createQuery("update Car c set c.releaseDate = :cRelDate, c.model = :cModel, c.carBrand = :cBrand, c.carBodyType = :cType,"
                                 + " c.engine = :cEngine where c.id = :cId")
-                        .setParameter("cName", car.getName())
+                        .setParameter("cRelDate", car.getReleaseDate())
+                        .setParameter("cModel", car.getModel())
                         .setParameter("cBrand", car.getCarBrand())
                         .setParameter("cType", car.getCarBodyType())
                         .setParameter("cEngine", car.getEngine())

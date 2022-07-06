@@ -1,4 +1,4 @@
 CREATE TABLE car_brands (
-    id    SERIAL PRIMARY KEY,
+    id    BIGSERIAL NOT NULL PRIMARY KEY,
     name  VARCHAR
 )

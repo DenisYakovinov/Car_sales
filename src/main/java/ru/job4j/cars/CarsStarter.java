@@ -12,6 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import ru.job4j.cars.model.User;
+import ru.job4j.cars.util.SessionUtil;
+
+import javax.servlet.http.HttpSession;
 
 @SpringBootApplication
 @Controller
@@ -38,6 +44,13 @@ public class CarsStarter {
         dataSource.setUsername(login);
         dataSource.setPassword(password);
         return dataSource;
+    }
+
+    @GetMapping("/")
+    String home(Model model, HttpSession session) {
+        User user = SessionUtil.getUserFromSession(session);
+        model.addAttribute("user", user);
+        return "redirect:/index";
     }
 
     public static void main(String[] args) {

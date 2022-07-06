@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS history_owner (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL NOT NULL PRIMARY KEY,
     driver_id BIGINT NOT NULL,
     car_id BIGINT NOT NULL
 );

@@ -27,5 +27,6 @@
         <mapping class="ru.job4j.cars.model.CarBrand"/>
         <mapping class="ru.job4j.cars.model.CarBodyType"/>
         <mapping class="ru.job4j.cars.model.Advertisement"/>
+        <mapping class="ru.job4j.cars.model.User"/>
     </session-factory>
 </hibernate-configuration>

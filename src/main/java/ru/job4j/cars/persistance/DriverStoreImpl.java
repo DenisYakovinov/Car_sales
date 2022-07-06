@@ -1,12 +1,14 @@
 package ru.job4j.cars.persistance;
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Driver;
 import ru.job4j.cars.persistance.api.DriverStore;
 import ru.job4j.cars.persistance.api.GenericPersistence;
 
 import java.util.List;
 
+@Repository
 public class DriverStoreImpl extends GenericPersistence implements DriverStore {
 
     public DriverStoreImpl(SessionFactory sessionFactory) {

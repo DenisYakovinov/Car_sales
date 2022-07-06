@@ -25,7 +25,6 @@ public class Advertisement {
     private LocalDateTime created;
 
     public Advertisement() {
-
     }
 
     public Advertisement(String description, Car car, User user, byte[] photo, boolean isSold, LocalDateTime created) {
@@ -104,5 +103,65 @@ public class Advertisement {
     @Override
     public int hashCode() {
         return Objects.hash(id, user);
+    }
+
+    public static AdvertisementBuilder builder() {
+        return new AdvertisementBuilder();
+    }
+
+    public static class AdvertisementBuilder {
+        private String description;
+        private Car car;
+        private User user;
+        private byte[] photo;
+        private boolean isSold;
+        private LocalDateTime created;
+
+        AdvertisementBuilder() {
+        }
+
+        public AdvertisementBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public AdvertisementBuilder car(Car car) {
+            this.car = car;
+            return this;
+        }
+
+        public AdvertisementBuilder user(User user) {
+            this.user = user;
+            return this;
+        }
+
+        public AdvertisementBuilder photo(byte[] photo) {
+            this.photo = photo;
+            return this;
+        }
+
+        public AdvertisementBuilder isSold(boolean isSold) {
+            this.isSold = isSold;
+            return this;
+        }
+
+        public AdvertisementBuilder create(LocalDateTime created) {
+            this.created = created;
+            return this;
+        }
+
+        public Advertisement build() {
+            Advertisement advertisement = new Advertisement();
+            advertisement.setDescription(description);
+            advertisement.setCar(car);
+            advertisement.setUser(user);
+            advertisement.setPhoto(photo);
+            advertisement.setSold(isSold);
+            advertisement.setCreated(created);
+            if (user == null) {
+                throw new IllegalArgumentException("user can't be null");
+            }
+            return advertisement;
+        }
     }
 }

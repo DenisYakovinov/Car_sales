@@ -1,6 +1,7 @@
 package ru.job4j.cars.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -12,7 +13,10 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
+    private String model;
+
+    @Column(name = "release_date")
+    private LocalDate releaseDate;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "fk_carId_to_engine"))
@@ -37,23 +41,24 @@ public class Car {
 
     }
 
-    public Car(String name, Engine engine, CarBrand carBrand, CarBodyType carBodyType) {
-        this.name = name;
+    public Car(String model, Engine engine, CarBrand carBrand, CarBodyType carBodyType, LocalDate releaseDate) {
+        this.model = model;
         this.engine = engine;
         this.carBrand = carBrand;
         this.carBodyType = carBodyType;
+        this.releaseDate = releaseDate;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getModel() {
+        return model;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public Engine getEngine() {
@@ -88,6 +93,14 @@ public class Car {
         drivers.add(driver);
     }
 
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -97,11 +110,11 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return id == car.id && Objects.equals(name, car.name);
+        return id == car.id && Objects.equals(model, car.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, model);
     }
 }

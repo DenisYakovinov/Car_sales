@@ -1,5 +1,5 @@
 CREATE TABLE advertisements (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL NOT NULL PRIMARY KEY,
     description VARCHAR,
     user_id BIGINT NOT NULL,
     car_id BIGINT NOT NULL,

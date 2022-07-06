@@ -2,13 +2,15 @@ package ru.job4j.cars.persistance;
 
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.User;
 import ru.job4j.cars.persistance.api.GenericPersistence;
-import ru.job4j.cars.persistance.api.Store;
 import ru.job4j.cars.persistance.api.UserStore;
 
 import java.util.List;
+import java.util.Optional;
 
+@Repository
 public class UserStoreImpl extends GenericPersistence implements UserStore {
 
     public UserStoreImpl(SessionFactory sessionFactory) {
@@ -52,5 +54,15 @@ public class UserStoreImpl extends GenericPersistence implements UserStore {
         return genericPersist(session -> (User) session.createQuery("from User u where u.id = :uId")
                 .setParameter("uId", id)
                 .uniqueResult());
+    }
+
+    @Override
+    public Optional<User> findUserByEmailAndPwd(String email, String password) {
+        return genericPersist(session ->
+                session.createQuery("from User u where u.email = :uEmail and u.password = :uPassword")
+                        .setParameter("uEmail", email)
+                        .setParameter("uPassword", password)
+                        .uniqueResultOptional()
+        );
     }
 }

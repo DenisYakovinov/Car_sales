@@ -10,22 +10,22 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String email;
+    private String password;
     private String name;
 
     public User() {
-
     }
 
-    public User(String name) {
+    public User(int id, String name, String email, String password) {
+        this.id = id;
         this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -36,20 +36,36 @@ public class User {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof User)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         User user = (User) o;
-        return id == user.id && Objects.equals(name, user.name);
+        return id == user.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 }

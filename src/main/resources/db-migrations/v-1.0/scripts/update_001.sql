@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS cars (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    model VARCHAR,
+    release_date DATE
 );

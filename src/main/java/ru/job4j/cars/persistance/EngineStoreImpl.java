@@ -1,12 +1,14 @@
 package ru.job4j.cars.persistance;
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Engine;
 import ru.job4j.cars.persistance.api.EngineStore;
 import ru.job4j.cars.persistance.api.GenericPersistence;
 
 import java.util.List;
 
+@Repository
 public class EngineStoreImpl extends GenericPersistence implements EngineStore {
 
     public EngineStoreImpl(SessionFactory sessionFactory) {
