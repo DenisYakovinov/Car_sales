@@ -1,4 +1,4 @@
-package ru.job4j.cars.persistance;
+package ru.job4j.cars.persistance.api;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

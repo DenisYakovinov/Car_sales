@@ -1,22 +1,21 @@
 package ru.job4j.cars.persistance;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Advertisement;
 import ru.job4j.cars.model.CarBrand;
+import ru.job4j.cars.persistance.api.AdvertisementStore;
+import ru.job4j.cars.persistance.api.GenericPersistence;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public class AdvertisementStore extends GenericPersistence implements Store<Advertisement> {
+public class AdvertisementStoreImpl extends GenericPersistence implements AdvertisementStore {
 
     private static final String BASE_QUERY_SELECT_PART = "select distinct a from Advertisement a"
             + " join fetch a.car c join fetch c.drivers";
 
-    public AdvertisementStore(SessionFactory sessionFactory) {
+    public AdvertisementStoreImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
@@ -58,11 +57,11 @@ public class AdvertisementStore extends GenericPersistence implements Store<Adve
 
     @Override
     public Advertisement findById(int id) {
-        return genericPersist(session -> {
-            Query query = session.createQuery("from Advertisement a where a.id = :aId");
-            query.setParameter("aId", id);
-            return (Advertisement) query.uniqueResult();
-        });
+        return genericPersist(session -> (Advertisement)
+                session.createQuery("from Advertisement a where a.id = :aId")
+                        .setParameter("aId", id)
+                        .uniqueResult()
+        );
     }
 
     public List<Advertisement> findAllForLastDay() {
