@@ -1,0 +1,1 @@
+TRUNCATE TABLE car_body_types;

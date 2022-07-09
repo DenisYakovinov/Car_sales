@@ -24,7 +24,7 @@ public class DriverStoreImpl extends GenericPersistence implements DriverStore {
     }
 
     @Override
-    public boolean replace(int id, Driver driver) {
+    public boolean replace(long id, Driver driver) {
         return genericPersist(session ->
                 session.createQuery("update Driver d set d.name= :newName where d.id = :dId")
                         .setParameter("newName", driver.getName())
@@ -34,7 +34,7 @@ public class DriverStoreImpl extends GenericPersistence implements DriverStore {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return genericPersist(session ->
                 session.createQuery("delete from Driver d where d.id = :dId")
                         .setParameter("dId", id)
@@ -48,7 +48,7 @@ public class DriverStoreImpl extends GenericPersistence implements DriverStore {
     }
 
     @Override
-    public Driver findById(int id) {
+    public Driver findById(long id) {
         return genericPersist(session -> (Driver) session.createQuery("from Driver d where d.id = :dId")
                 .setParameter("dId", id)
                 .uniqueResult());

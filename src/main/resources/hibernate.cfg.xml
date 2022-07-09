@@ -21,7 +21,7 @@
         <property name="use_sql_comments">true</property>
         <property name="hibernate.jdbc.time_zone">Europe/Moscow</property>
 
-        <mapping class="ru.job4j.cars.model.Car"/>
+        <mapping class="ru.job4j.cars.model.CarModel"/>
         <mapping class="ru.job4j.cars.model.Driver"/>
         <mapping class="ru.job4j.cars.model.Engine"/>
         <mapping class="ru.job4j.cars.model.CarBrand"/>

@@ -24,7 +24,7 @@ public class EngineStoreImpl extends GenericPersistence implements EngineStore {
     }
 
     @Override
-    public boolean replace(int id, Engine engine) {
+    public boolean replace(long id, Engine engine) {
         return genericPersist(session ->
                 session.createQuery("update Engine e set e.name= :newName where e.id = :eId")
                         .setParameter("newName", engine.getName())
@@ -34,7 +34,7 @@ public class EngineStoreImpl extends GenericPersistence implements EngineStore {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return genericPersist(session ->
                 session.createQuery("delete from Engine e where e.id = :eId")
                         .setParameter("eId", id)
@@ -48,7 +48,7 @@ public class EngineStoreImpl extends GenericPersistence implements EngineStore {
     }
 
     @Override
-    public Engine findById(int id) {
+    public Engine findById(long id) {
         return genericPersist(session -> (Engine) session.createQuery("from Engine e where e.id = :eId")
                 .setParameter("eId", id)
                 .uniqueResult());

@@ -26,7 +26,7 @@ public class UserStoreImpl extends GenericPersistence implements UserStore {
     }
 
     @Override
-    public boolean replace(int id, User user) {
+    public boolean replace(long id, User user) {
         return genericPersist(session ->
                 session.createQuery("update User u set u.name= :newName where u.id = :uId")
                         .setParameter("newName", user.getName())
@@ -36,7 +36,7 @@ public class UserStoreImpl extends GenericPersistence implements UserStore {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return genericPersist(session ->
                 session.createQuery("delete from User u where u.id = :uId")
                         .setParameter("uId", id)
@@ -50,7 +50,7 @@ public class UserStoreImpl extends GenericPersistence implements UserStore {
     }
 
     @Override
-    public User findById(int id) {
+    public User findById(long id) {
         return genericPersist(session -> (User) session.createQuery("from User u where u.id = :uId")
                 .setParameter("uId", id)
                 .uniqueResult());

@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS photos;
+TRUNCATE TABLE car_brands;

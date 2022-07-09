@@ -24,7 +24,7 @@ public class PhotoStoreImpl extends GenericPersistence implements PhotoStore {
     }
 
     @Override
-    public boolean replace(int id, Photo photo) {
+    public boolean replace(long id, Photo photo) {
         return genericPersist(session ->
                 session.createQuery("update Photo p set p.photo = :pPhoto where p.id = :pId")
                         .setParameter("pPhoto", photo.getPhoto())
@@ -34,7 +34,7 @@ public class PhotoStoreImpl extends GenericPersistence implements PhotoStore {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return genericPersist(session ->
                 session.createQuery("delete from Photo p where p.id = :pId")
                         .setParameter("pId", id)
@@ -48,7 +48,7 @@ public class PhotoStoreImpl extends GenericPersistence implements PhotoStore {
     }
 
     @Override
-    public Photo findById(int id) {
+    public Photo findById(long id) {
         return genericPersist(session -> (Photo) session.createQuery("from Photo p where p.id = :pId")
                 .setParameter("pId", id)
                 .uniqueResult());

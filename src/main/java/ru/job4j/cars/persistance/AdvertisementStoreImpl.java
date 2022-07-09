@@ -13,7 +13,7 @@ import java.util.List;
 public class AdvertisementStoreImpl extends GenericPersistence implements AdvertisementStore {
 
     private static final String BASE_QUERY_SELECT_PART = "select distinct a from Advertisement a"
-            + " join fetch a.car c join fetch c.drivers";
+            + " join fetch a.car";
 
     public AdvertisementStoreImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
@@ -28,10 +28,12 @@ public class AdvertisementStoreImpl extends GenericPersistence implements Advert
     }
 
     @Override
-    public boolean replace(int id, Advertisement advertisement) {
+    public boolean replace(long id, Advertisement advertisement) {
         return genericPersist(session ->
-                session.createQuery("update Advertisement a set a.description = :newDescr, a.car= :newCar,"
-                                + "a.created = :newCr, a.isSold = :newSold, a.photo = :newPhoto where a.id = :aId")
+                session.createQuery("update Advertisement a set a.releaseDate = :aRelease, a.description = :newDescr,"
+                                + " a.carModel= :newCar, a.created = :newCr, a.isSold = :newSold, a.photo = :newPhoto"
+                                + " where a.id = :aId")
+                        .setParameter("aRelease", advertisement.getReleaseDate())
                         .setParameter("newDescr", advertisement.getDescription())
                         .setParameter("newCar", advertisement.getCar())
                         .setParameter("newCr", advertisement.getCreated())
@@ -42,7 +44,7 @@ public class AdvertisementStoreImpl extends GenericPersistence implements Advert
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return genericPersist(session ->
                 session.createQuery("delete from Advertisement a where a.id = :aId")
                         .setParameter("aId", id)
@@ -56,7 +58,7 @@ public class AdvertisementStoreImpl extends GenericPersistence implements Advert
     }
 
     @Override
-    public Advertisement findById(int id) {
+    public Advertisement findById(long id) {
         return genericPersist(session -> (Advertisement)
                 session.createQuery("from Advertisement a where a.id = :aId")
                         .setParameter("aId", id)

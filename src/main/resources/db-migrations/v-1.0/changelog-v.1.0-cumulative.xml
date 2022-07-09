@@ -8,10 +8,15 @@
     <include file="01-changeset-create-cars-table.xml" relativeToChangelogFile="true"/>
     <include file="02-changeset-create-engine-table.xml" relativeToChangelogFile="true"/>
     <include file="03-changeset-create-drivers-table.xml" relativeToChangelogFile="true"/>
-    <include file="04-changeset-create-history-owner-table.xml" relativeToChangelogFile="true"/>
+    <include file="04-changeset-create-cars-engines-table.xml" relativeToChangelogFile="true"/>
     <include file="05-changeset-create-users-table.xml" relativeToChangelogFile="true"/>
     <include file="06-changeset-create-car-brand-table.xml" relativeToChangelogFile="true"/>
     <include file="07-changeset-create-car-body-table.xml" relativeToChangelogFile="true"/>
     <include file="08-changeset-create-advertisement-table.xml" relativeToChangelogFile="true"/>
     <include file="09-changeset-add-fk-columns-to-cars.xml" relativeToChangelogFile="true"/>
+    <include file="10-changeset-add-photos-table.xml" relativeToChangelogFile="true"/>
+    <include file="11-changeset-insert-car-brands.xml" relativeToChangelogFile="true"/>
+    <include file="12-changeset-insert-car-body-types.xml" relativeToChangelogFile="true"/>
+    <include file="13-changeset-insert-car-engines.xml" relativeToChangelogFile="true"/>
+    <include file="14-changeset-insert-car-models.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

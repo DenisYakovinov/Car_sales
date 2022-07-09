@@ -22,12 +22,12 @@ public class CarBodyTypeServiceImpl implements CarBodyTypeService {
     }
 
     @Override
-    public boolean replace(int id, CarBodyType carBodyType) {
+    public boolean replace(long id, CarBodyType carBodyType) {
         return carBodyTypeStore.replace(id, carBodyType);
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return carBodyTypeStore.delete(id);
     }
 
@@ -37,7 +37,7 @@ public class CarBodyTypeServiceImpl implements CarBodyTypeService {
     }
 
     @Override
-    public CarBodyType findById(int id) {
+    public CarBodyType findById(long id) {
         return carBodyTypeStore.findById(id);
     }
 }

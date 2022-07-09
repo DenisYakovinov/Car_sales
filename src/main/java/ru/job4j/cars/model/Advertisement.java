@@ -1,6 +1,7 @@
 package ru.job4j.cars.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -13,9 +14,12 @@ public class Advertisement {
     private long id;
     private String description;
 
+    @Column(name = "release_date")
+    private LocalDate releaseDate;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_id", nullable = false)
-    private Car car;
+    @JoinColumn(name = "car_model_id", nullable = false)
+    private CarModel carModel;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
@@ -27,13 +31,15 @@ public class Advertisement {
     public Advertisement() {
     }
 
-    public Advertisement(String description, Car car, User user, byte[] photo, boolean isSold, LocalDateTime created) {
+    public Advertisement(String description, CarModel carModel, User user, byte[] photo, boolean isSold, LocalDateTime created,
+                         LocalDate releaseDate) {
         this.description = description;
-        this.car = car;
+        this.carModel = carModel;
         this.user = user;
         this.photo = photo;
         this.isSold = isSold;
         this.created = created;
+        this.releaseDate = releaseDate;
     }
 
     public long getId() {
@@ -48,12 +54,12 @@ public class Advertisement {
         this.description = description;
     }
 
-    public Car getCar() {
-        return car;
+    public CarModel getCar() {
+        return carModel;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCar(CarModel carModel) {
+        this.carModel = carModel;
     }
 
     public User getUser() {
@@ -88,6 +94,14 @@ public class Advertisement {
         this.created = created;
     }
 
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -111,11 +125,13 @@ public class Advertisement {
 
     public static class AdvertisementBuilder {
         private String description;
-        private Car car;
+        private CarModel carModel;
         private User user;
         private byte[] photo;
         private boolean isSold;
         private LocalDateTime created;
+
+        private LocalDate releaseDate;
 
         AdvertisementBuilder() {
         }
@@ -125,8 +141,8 @@ public class Advertisement {
             return this;
         }
 
-        public AdvertisementBuilder car(Car car) {
-            this.car = car;
+        public AdvertisementBuilder car(CarModel carModel) {
+            this.carModel = carModel;
             return this;
         }
 
@@ -150,14 +166,20 @@ public class Advertisement {
             return this;
         }
 
+        public AdvertisementBuilder releaseDate(LocalDate releaseDate) {
+            this.releaseDate = releaseDate;
+            return this;
+        }
+
         public Advertisement build() {
             Advertisement advertisement = new Advertisement();
             advertisement.setDescription(description);
-            advertisement.setCar(car);
+            advertisement.setCar(carModel);
             advertisement.setUser(user);
             advertisement.setPhoto(photo);
             advertisement.setSold(isSold);
             advertisement.setCreated(created);
+            advertisement.setReleaseDate(releaseDate);
             if (user == null) {
                 throw new IllegalArgumentException("user can't be null");
             }

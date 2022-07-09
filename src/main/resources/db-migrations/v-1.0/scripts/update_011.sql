@@ -1,4 +1,12 @@
-CREATE TABLE IF NOT EXISTS photos (
-    id BIGSERIAL NOT NULL PRIMARY KEY,
-    photo BYTEA
-);
+INSERT INTO car_brands (name) VALUES ('kia');
+INSERT INTO car_brands (name) VALUES ('Honda');
+INSERT INTO car_brands (name) VALUES ('Jeep');
+INSERT INTO car_brands (name) VALUES ('Haval');
+INSERT INTO car_brands (name) VALUES ('Hyundai');
+INSERT INTO car_brands (name) VALUES ('Imaginary');
+INSERT INTO car_brands (name) VALUES ('Opel');
+INSERT INTO car_brands (name) VALUES ('Audi');
+INSERT INTO car_brands (name) VALUES ('Toyota');
+INSERT INTO car_brands (name) VALUES ('Volvo');
+INSERT INTO car_brands (name) VALUES ('Volkswagen');
+INSERT INTO car_brands (name) VALUES ('Suzuki');

@@ -23,12 +23,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean replace(int id, User user) {
+    public boolean replace(long id, User user) {
         return userStore.replace(id, user);
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return userStore.delete(id);
     }
 
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(int id) {
+    public User findById(long id) {
         return userStore.findById(id);
     }
 

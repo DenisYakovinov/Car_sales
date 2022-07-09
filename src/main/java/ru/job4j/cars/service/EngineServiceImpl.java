@@ -22,12 +22,12 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public boolean replace(int id, Engine engine) {
+    public boolean replace(long id, Engine engine) {
         return engineStore.replace(id, engine);
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return engineStore.delete(id);
     }
 
@@ -37,7 +37,7 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public Engine findById(int id) {
+    public Engine findById(long id) {
         return engineStore.findById(id);
     }
 }

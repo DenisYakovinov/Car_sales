@@ -22,12 +22,12 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public boolean replace(int id, Driver driver) {
+    public boolean replace(long id, Driver driver) {
         return driverStore.replace(id, driver);
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return driverStore.delete(id);
     }
 
@@ -37,7 +37,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver findById(int id) {
+    public Driver findById(long id) {
         return driverStore.findById(id);
     }
 }

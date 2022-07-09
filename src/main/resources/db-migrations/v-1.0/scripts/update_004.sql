@@ -1,9 +1,9 @@
-CREATE TABLE IF NOT EXISTS history_owner (
+CREATE TABLE IF NOT EXISTS cars_engines (
     id BIGSERIAL NOT NULL PRIMARY KEY,
-    driver_id BIGINT NOT NULL,
-    car_id BIGINT NOT NULL
+    engine_id BIGINT NOT NULL,
+    car_model_id BIGINT NOT NULL
 );
 
-ALTER TABLE IF EXISTS history_owner
-    ADD CONSTRAINT fk_driver_id FOREIGN KEY (driver_id) REFERENCES drivers(id),
-    ADD CONSTRAINT fk_car_id FOREIGN KEY (car_id) REFERENCES cars(id);
+ALTER TABLE IF EXISTS cars_engines
+    ADD CONSTRAINT fk_engine_id FOREIGN KEY (engine_id) REFERENCES engine(id),
+    ADD CONSTRAINT fk_car_model_id FOREIGN KEY (car_model_id) REFERENCES car_models(id);

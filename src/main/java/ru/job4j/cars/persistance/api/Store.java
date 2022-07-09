@@ -6,12 +6,12 @@ public interface Store<T> {
 
     T add(T entity);
 
-    boolean replace(int id, T entity);
+    boolean replace(long id, T entity);
 
-    boolean delete(int id);
+    boolean delete(long id);
 
     List<T> findAll();
 
-    T findById(int id);
+    T findById(long id);
 }
 

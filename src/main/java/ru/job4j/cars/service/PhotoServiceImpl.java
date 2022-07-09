@@ -22,12 +22,12 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public boolean replace(int id, Photo photo) {
+    public boolean replace(long id, Photo photo) {
         return photoStore.replace(id, photo);
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return photoStore.delete(id);
     }
 
@@ -37,7 +37,7 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public Photo findById(int id) {
+    public Photo findById(long id) {
         return photoStore.findById(id);
     }
 }

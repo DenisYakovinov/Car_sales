@@ -24,7 +24,7 @@ public class CarBrandStoreImpl extends GenericPersistence implements CarBrandSto
     }
 
     @Override
-    public boolean replace(int id, CarBrand carBrand) {
+    public boolean replace(long id, CarBrand carBrand) {
         return genericPersist(session ->
                 session.createQuery("update CarBrand cb set cb.name= :newName where cb.id = :cbId")
                         .setParameter("newName", carBrand.getName())
@@ -34,7 +34,7 @@ public class CarBrandStoreImpl extends GenericPersistence implements CarBrandSto
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return genericPersist(session ->
                 session.createQuery("delete from CarBrand cb where cb.id = :cbId")
                         .setParameter("cbId", id)
@@ -48,7 +48,7 @@ public class CarBrandStoreImpl extends GenericPersistence implements CarBrandSto
     }
 
     @Override
-    public CarBrand findById(int id) {
+    public CarBrand findById(long id) {
         return genericPersist(session -> (CarBrand) session.createQuery("from CarBrand cb where cb.id = :cbId")
                 .setParameter("cbId", id)
                 .uniqueResult());

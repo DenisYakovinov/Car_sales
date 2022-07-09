@@ -22,12 +22,12 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public boolean replace(int id, Advertisement advertisement) {
+    public boolean replace(long id, Advertisement advertisement) {
         return advertisementStore.replace(id, advertisement);
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return advertisementStore.delete(id);
     }
 
@@ -37,7 +37,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public Advertisement findById(int id) {
+    public Advertisement findById(long id) {
         return advertisementStore.findById(id);
     }
 }

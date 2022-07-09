@@ -22,12 +22,12 @@ public class CarBrandServiceImpl implements CarBrandService {
     }
 
     @Override
-    public boolean replace(int id, CarBrand carBrand) {
+    public boolean replace(long id, CarBrand carBrand) {
         return carBrandStore.replace(id, carBrand);
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return carBrandStore.delete(id);
     }
 
@@ -37,7 +37,7 @@ public class CarBrandServiceImpl implements CarBrandService {
     }
 
     @Override
-    public CarBrand findById(int id) {
+    public CarBrand findById(long id) {
         return carBrandStore.findById(id);
     }
 }
