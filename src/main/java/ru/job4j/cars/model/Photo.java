@@ -9,20 +9,16 @@ import java.util.Objects;
 public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(name = "photo")
     private byte[] photo;
-    @ManyToOne
-    @JoinColumn(name = "advertisement_id")
-    private Advertisement advertisement;
 
     public Photo() {
     }
 
-    public static Photo of(byte[] photo, Advertisement ad) {
+    public static Photo of(byte[] photo) {
         Photo ph = new Photo();
         ph.photo = photo;
-        ph.advertisement = ad;
         return ph;
     }
 
@@ -43,7 +39,7 @@ public class Photo {
         return Objects.hash(id);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

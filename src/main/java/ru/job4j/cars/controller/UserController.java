@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
-public class UserController {
+public class  UserController {
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -40,5 +40,11 @@ public class UserController {
         HttpSession session = req.getSession();
         session.setAttribute("user", userDb.get());
         return "redirect:/index";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 }

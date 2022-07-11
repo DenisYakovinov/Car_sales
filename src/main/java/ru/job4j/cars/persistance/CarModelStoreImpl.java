@@ -59,7 +59,6 @@ public class CarModelStoreImpl extends GenericPersistence implements CarModelSto
                 .list());
     }
 
-
     @Override
     public List<CarModel> findAllByBrand(long brandId) {
         return genericPersist(session ->
@@ -70,8 +69,8 @@ public class CarModelStoreImpl extends GenericPersistence implements CarModelSto
 
     @Override
     public CarModel findById(long id) {
-        return genericPersist(session -> (CarModel) session.createQuery("select distinct c from CarModel c left join fetch"
-                        + " c.engines where c.id = :cId")
+        return genericPersist(session -> (CarModel) session.createQuery("select c from CarModel c"
+                        + " left join fetch c.engines where c.id = :cId")
                 .setParameter("cId", id)
                 .uniqueResult());
     }

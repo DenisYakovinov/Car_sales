@@ -22,11 +22,11 @@
         <property name="hibernate.jdbc.time_zone">Europe/Moscow</property>
 
         <mapping class="ru.job4j.cars.model.CarModel"/>
-        <mapping class="ru.job4j.cars.model.Driver"/>
         <mapping class="ru.job4j.cars.model.Engine"/>
         <mapping class="ru.job4j.cars.model.CarBrand"/>
         <mapping class="ru.job4j.cars.model.CarBodyType"/>
         <mapping class="ru.job4j.cars.model.Advertisement"/>
         <mapping class="ru.job4j.cars.model.User"/>
+        <mapping class="ru.job4j.cars.model.Photo"/>
     </session-factory>
 </hibernate-configuration>

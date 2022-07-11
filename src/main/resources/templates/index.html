@@ -23,7 +23,8 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand"> Cars sales </a>
+        <img width="30px" height="30px" src="/images/wheelLogo.png"/>
+        <a class="navbar-brand"> &nbsp; Cars sales </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,13 +32,16 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" th:href="@{/index}">Main </a>
-                <a class="nav-item nav-link" th:href="@{/defineCarBrand}">Add new advertisement</a>
+                <a class="nav-item nav-link" th:href="@{/defineCarBrand}">Add a new advertisement</a>
             </div>
         </div>
         <div class="navbar-nav">
             <span class="nav-item nav-link text-secondary" th:text="${session.user.name}"></span>
-            <a class="nav-item nav-link" th:href="@{/logout}">
-                <span> Logout</span>
+            <a th:if="${session.user.name} == 'Guest'" class="nav-item nav-link" th:href="@{/loginPage}">
+                <span>| Login</span>
+            </a>
+            <a th:unless="${session.user.name} == 'Guest'" class="nav-item nav-link" th:href="@{/logout}">
+                <span>| Logout</span>
             </a>
         </div>
     </nav>
@@ -48,23 +52,31 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th scope="col">model</th>
+                            <th scope="col">Preview</th>
                             <th scope="col">Brand</th>
-                            <th scope="col">Release date</th>
-                            <th scope="col">created</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Seller email</th>
+                            <th scope="col">Release</th>
+                            <th scope="col">Ad created</th>
                             <th scope="col">sale status</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="ad: ${advertisements}">
-                            <td th:text="${ad.carModel.model}"></td>
-                            <td th:text="${ad.carModel.carBrand}"></td>
-                            <td th:text="${#temporals.format(ad.releaseDate, 'dd-MMMM-yyyy', new java.util.Locale('en', 'EN'))}"></td>
-                            <td th:text="${#temporals.format(ad.created, 'dd-MMMM-yyyy', new java.util.Locale('en', 'EN'))}"></td>
-                            <td class="text-success" th:if="${ad.sold}">Sold</td>
+                        <tr th:each="advertisement: ${advertisements}">
                             <td>
-                                <a th:href="@{|/detail/${ad.id}|}"
+                                <img th:if="${!advertisement.getPhotos().isEmpty()}"  th:width="50" th:high="50" th:src="@{|/firstPhoto/${advertisement.id}|}">
+                            </td>
+                            <td th:text="${advertisement.carModel.carBrand.name}"></td>
+                            <td th:text="${advertisement.carModel.name}"></td>
+                            <td th:text="${advertisement.user.getEmail()}"}></td>
+                            <td th:text="${#temporals.format(advertisement.releaseDate, 'yyyy', new java.util.Locale('en', 'EN'))}"></td>
+                            <td th:text="${#temporals.format(advertisement.created, 'dd-MMMM-yyyy', new java.util.Locale('en', 'EN'))}"></td>
+                            <td class="text-danger" th:if="${advertisement.sold}">&nbsp;
+                                <img width="35px" height="35px" src="/images/sold1.png"/></td>
+                            <td class="text-success" th:if="${!advertisement.sold}">For sale</td>
+                            <td>
+                                <a class="btn  btn-secondary" th:href="@{|/advertisementDetail/${advertisement.id}|}"
                                    role="button">Detail</a>
                             </td>
                         </tr>

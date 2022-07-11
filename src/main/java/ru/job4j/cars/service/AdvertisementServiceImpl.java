@@ -40,4 +40,19 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public Advertisement findById(long id) {
         return advertisementStore.findById(id);
     }
+
+    @Override
+    public List<Advertisement> findAllWithPhotos() {
+        return advertisementStore.findAllWithPhotos();
+    }
+
+    @Override
+    public boolean setSoldById(long id) {
+        return advertisementStore.setSoldById(id);
+    }
+
+    @Override
+    public Advertisement replaceWithPhotos(Advertisement advertisement) {
+        return advertisementStore.replaceWithPhotos(advertisement);
+    }
 }

@@ -8,7 +8,7 @@
     <include file="01-changeset-create-cars-table.xml" relativeToChangelogFile="true"/>
     <include file="02-changeset-create-engine-table.xml" relativeToChangelogFile="true"/>
     <include file="03-changeset-create-drivers-table.xml" relativeToChangelogFile="true"/>
-    <include file="04-changeset-create-cars-engines-table.xml" relativeToChangelogFile="true"/>
+    <include file="04-changeset-create-link-cars-engines-table.xml" relativeToChangelogFile="true"/>
     <include file="05-changeset-create-users-table.xml" relativeToChangelogFile="true"/>
     <include file="06-changeset-create-car-brand-table.xml" relativeToChangelogFile="true"/>
     <include file="07-changeset-create-car-body-table.xml" relativeToChangelogFile="true"/>

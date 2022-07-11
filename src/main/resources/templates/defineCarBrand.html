@@ -24,7 +24,8 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand"> Cars sales </a>
+        <img width="30px" height="30px" src="@{/images/wheelLogo.png"/>
+        <a class="navbar-brand"> &nbsp; Cars sales </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -44,14 +45,15 @@
     <div class="row pt-3">
         <div class="card" style="width: 100%; border-radius: 10px">
             <div class="card-header">
-                New advertisement
+                <img width="22px" height="22px" src="/images/attribList.png"/>
+                &nbsp; New advertisement
             </div>
             <div class="card-body">
                 <form th:action="@{/defineCarModel}" method="POST">
                     <input type="hidden" name="id" value="0"/>
                     <div class="form-group">
                         <strong>Select car model: </strong>
-                        <select class="form-control" name="brand" id="brand">
+                        <select class="form-control" name="brand" id="brand" required>
                             <option disabled selected value> -- select -- </option>
                             <option th:each="brand : ${brands}" th:value="${brand.id}"
                                     th:text="${brand.name}"></option>

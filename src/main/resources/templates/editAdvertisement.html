@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <style>
+        .field__wrapper {
+            width: 100%;
+            position: relative;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .field__file {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+        }
+
+        .field__file-wrapper {
+            width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+
+        .field__file-fake {
+            height: 40px;
+            width: calc(100% - 130px);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 0 15px;
+            border: 1px solid #c7c7c7;
+            border-radius: 3px 0 0 3px;
+            border-right: none;
+        }
+
+        .field__file-button {
+            width: 130px;
+            height: 40px;
+            background: lightslategrey;
+            color: #fff;
+            font-size: 1.125rem;
+            font-weight: 700;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            border-radius: 0 3px 3px 0;
+            cursor: pointer;
+        }
+    </style>
+
+    <title>Cars sales</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img width="30px" height="30px" src="/images/wheelLogo.png"/>
+        <a class="navbar-brand"> &nbsp; Cars sales </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" th:href="@{/index}">Main </a>
+            </div>
+        </div>
+        <div class="navbar-nav">
+            <span class="nav-item nav-link text-secondary" th:text="${session.user.name}"></span>
+            <a class="nav-item nav-link" th:href="@{/logout}">
+                <span> | Logout</span>
+            </a>
+        </div>
+    </nav>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%; border-radius: 10px">
+            <div class="card-header">
+                <img width="22px" height="22px" src="/images/attribList.png"/>
+                &nbsp; New advertisement
+            </div>
+            <div class="card-body">
+                <form th:action="@{/saveUpdatedAdvertisement}" th:object = "${advertisement}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="modelId" th:value="*{carModel.id}"/>
+                    <input type="hidden" name="id" th:value="*{id}"/>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <strong>Select car brand: </strong>
+                            <select class="form-control" disabled name="brand" id="brand">
+                                <option selected th:text="*{carModel.carBrand.name}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <strong>Select car model: </strong>
+                            <select class="form-control" disabled name="modelId" id="model">
+                                <option selected th:text="*{carModel.name}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <strong>Select car body type: </strong>
+                            <select class="form-control" disabled name="bodyTypeId" id="bodyTypeId">
+                                <option selected th:text="*{carModel.carBodyType.name}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <strong>Select engine: </strong>
+                            <select class="form-control" name="engineId" id="engineId" required>
+                                <option selected value th:text="*{engine.name}" th:value="*{engine.id}"></option>
+                                <option th:each="engine : ${engines}" th:value="${engine.id}"
+                                        th:text="${engine.name}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="releaseDate">release date</label>
+                            <input type="date" class="form-control" name="releaseDate" id="releaseDate"/>
+                        </div>
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" th:text="${advertisement.description}"  id="description"></textarea>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card" style="width: 34rem;">
+                                    <ul class="list-group list-group-flush">
+                                        <div class="card-header">
+                                            Seller info:
+                                        </div>
+                                        <li class="list-group-item"
+                                            th:text="${#session.getAttribute('user').phone}"></li>
+                                        <li class="list-group-item"
+                                            th:text="${#session.getAttribute('user').email}"></li>
+                                        <li class="list-group-item"
+                                            th:text="${#session.getAttribute('user').name}"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"  id="inputGroup-sizing-sm">Car owner:</span>
+                                    </div>
+                                    <input type="number" th:value="${advertisement.carOwner}" class="form-control" aria-label="car owners" name="carOwner"
+                                           id="carOwner" aria-describedby="inputGroup-sizing-sm" placeholder="number..">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm1">Car mileage: </span>
+                                    </div>
+                                    <input type="number" th:value="${advertisement.carMileage}" class="form-control" aria-label="car mileage" name="carMileage"
+                                           id="carMileage" aria-describedby="inputGroup-sizing-sm"
+                                           placeholder="number..">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm2">Price:</span>
+                                    </div>
+                                    <input type="number" th:value="${advertisement.price}" class="form-control" aria-label="price" name="price"
+                                           id="price" aria-describedby="inputGroup-sizing-sm" placeholder="amount..">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="field__wrapper">
+                            <input name="files" type="file" id="field__file-2" class="field field__file" multiple>
+                            <label class="field__file-wrapper" for="field__file-2">
+                                <div class="field__file-fake">0 files..</div>
+                                <div class="field__file-button">Select photos</div>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-sm">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let fields = document.querySelectorAll('.field__file');
+    Array.prototype.forEach.call(fields, function (input) {
+        let label = input.nextElementSibling,
+            labelVal = label.querySelector('.field__file-fake').innerText;
+
+        input.addEventListener('change', function (e) {
+            let countFiles = '';
+            if (this.files && this.files.length >= 1)
+                countFiles = this.files.length;
+
+            if (countFiles)
+                label.querySelector('.field__file-fake').innerText = 'Selected files: ' + countFiles;
+            else
+                label.querySelector('.field__file-fake').innerText = labelVal;
+        });
+    });
+</script>
+</body>
+</html>

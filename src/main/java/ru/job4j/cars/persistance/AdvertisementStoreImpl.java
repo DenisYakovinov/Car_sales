@@ -1,6 +1,8 @@
 package ru.job4j.cars.persistance;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Advertisement;
 import ru.job4j.cars.model.CarBrand;
@@ -30,17 +32,27 @@ public class AdvertisementStoreImpl extends GenericPersistence implements Advert
     @Override
     public boolean replace(long id, Advertisement advertisement) {
         return genericPersist(session ->
-                session.createQuery("update Advertisement a set a.releaseDate = :aRelease, a.description = :newDescr,"
-                                + " a.carModel= :newCar, a.created = :newCr, a.isSold = :newSold, a.photo = :newPhoto"
-                                + " where a.id = :aId")
+                session.createQuery("update Advertisement a set a.releaseDate = :aRelease, a.description = :aDescr,"
+                                + " a.carModel= :aCar, a.created = :aCreated, a.isSold = :aSold, a.price = :aPrice,"
+                                + "a.engine = :aEngine where a.id = :aId")
                         .setParameter("aRelease", advertisement.getReleaseDate())
-                        .setParameter("newDescr", advertisement.getDescription())
-                        .setParameter("newCar", advertisement.getCar())
-                        .setParameter("newCr", advertisement.getCreated())
-                        .setParameter("newSold", advertisement.isSold())
+                        .setParameter("aDescr", advertisement.getDescription())
+                        .setParameter("aCar", advertisement.getCarModel())
+                        .setParameter("aCreated", advertisement.getCreated())
+                        .setParameter("aSold", advertisement.isSold())
+                        .setParameter("aPrice", advertisement.getPrice())
                         .setParameter("aId", advertisement.getId())
+                        .setParameter("aEngine", advertisement.getEngine())
                         .executeUpdate() > 0
         );
+    }
+
+    @Override
+    public Advertisement replaceWithPhotos(Advertisement advertisement) {
+        return genericPersist(session -> {
+            session.update(advertisement);
+            return advertisement;
+        });
     }
 
     @Override
@@ -58,11 +70,18 @@ public class AdvertisementStoreImpl extends GenericPersistence implements Advert
     }
 
     @Override
+    public List<Advertisement> findAllWithPhotos() {
+        return genericPersist(session -> session.createQuery("select distinct a from Advertisement a"
+                + " left join fetch a.photos order by a.created").list());
+    }
+
+    @Override
     public Advertisement findById(long id) {
         return genericPersist(session -> (Advertisement)
-                session.createQuery("from Advertisement a where a.id = :aId")
+                session.createQuery("select distinct a from Advertisement a join fetch a.photos"
+                                + " where a.id = :aId")
                         .setParameter("aId", id)
-                        .uniqueResult()
+                        .getSingleResult()
         );
     }
 
@@ -84,6 +103,16 @@ public class AdvertisementStoreImpl extends GenericPersistence implements Advert
                 session.createQuery(String.format("%s%s", BASE_QUERY_SELECT_PART, "where c.carBrand.id = :cId"))
                         .setParameter("cId", brand.getId())
                         .list()
+        );
+    }
+
+    @Override
+    public boolean setSoldById(long id) {
+        return genericPersist(session ->
+                session.createQuery("update Advertisement a set a.isSold = :aSold where a.id = :aId")
+                        .setParameter("aSold", true)
+                        .setParameter("aId", id)
+                        .executeUpdate() > 0
         );
     }
 }

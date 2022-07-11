@@ -1,1 +1,2 @@
+ALTER TABLE photos DROP CONSTRAINT IF EXISTS fk_advertisement_id;
 DROP TABLE IF EXISTS photos;

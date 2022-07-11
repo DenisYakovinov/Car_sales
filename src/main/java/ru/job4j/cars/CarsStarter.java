@@ -48,9 +48,7 @@ public class CarsStarter {
 
     @GetMapping("/")
     String home(Model model, HttpSession session) {
-        User user = SessionUtil.getUserFromSession(session);
-        model.addAttribute("user", user);
-        return "redirect:/index";
+        return "redirect:/loginPage";
     }
 
     public static void main(String[] args) {

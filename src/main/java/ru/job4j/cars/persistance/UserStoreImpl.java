@@ -28,8 +28,11 @@ public class UserStoreImpl extends GenericPersistence implements UserStore {
     @Override
     public boolean replace(long id, User user) {
         return genericPersist(session ->
-                session.createQuery("update User u set u.name= :newName where u.id = :uId")
+                session.createQuery("update User u set u.name= :newName, u.password = :uPass, u.email = :uMail,"
+                                + "u.phone = :uPhone where u.id = :uId")
                         .setParameter("newName", user.getName())
+                        .setParameter("uMail", user.getEmail())
+                        .setParameter("uPhone", user.getPhone())
                         .setParameter("uId", user.getId())
                         .executeUpdate() > 0
         );

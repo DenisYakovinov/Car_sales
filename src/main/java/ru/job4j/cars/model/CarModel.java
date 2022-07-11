@@ -12,14 +12,15 @@ public class CarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "name")
     private String name;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "cars_engines", joinColumns = {
-            @JoinColumn(name = "engine_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "car_model_id", nullable = false, updatable = false)})
-    private Set<Engine> engines = new HashSet<>();
+    @JoinTable(name = "link_cars_engines",
+            joinColumns = @JoinColumn(name = "car_model_id"),
+            inverseJoinColumns =  @JoinColumn(name = "engine_id"))
+    private final Set<Engine> engines = new HashSet<>();
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "car_brand_id")

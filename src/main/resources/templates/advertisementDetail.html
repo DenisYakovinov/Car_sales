@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.1/css/bootstrap-multiselect.css">
+    <title>Cars sales</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img width="30px" height="30px" src="/images/wheelLogo.png"/>
+        <a class="navbar-brand"> &nbsp; Cars sales </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" th:href="@{/index}">Main </a>
+            </div>
+        </div>
+        <div class="navbar-nav">
+            <span class="nav-item nav-link text-secondary" th:text="${session.user.name}"></span>
+            <a class="nav-item nav-link" th:href="@{/logout}">
+                <span> | Logout</span>
+            </a>
+        </div>
+    </nav>
+    <div class="card">
+        <div class="card-header"> Advertisement details <span class="badge badge-primary"
+                                                              th:text="${#temporals.format(advertisement.getCreated(),
+                                                              'yyyy-MM-dd', new java.util.Locale('en', 'EN'))}">
+        </span>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Brand:</b> <span
+                                th:text="${advertisement.getCarModel().getCarBrand().name}"></span></li>
+                        <li class="list-group-item"><b>Model:</b> <span
+                                th:text="${advertisement.getCarModel().getName()}"></span></li>
+                        <li class="list-group-item"><b>Body type:</b> <span
+                                th:text="${advertisement.getCarModel().getCarBodyType().getName()}"></span></li>
+                        <li class="list-group-item"><b>Engine type:</b> <span
+                                th:text="${advertisement.engine.getName()}"></span></li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Mileage:</b><span
+                                th:text="${advertisement.getCarMileage()}"></span></li>
+                        <li class="list-group-item"><b>Release date:</b> <span
+                                th:text="${#temporals.format(advertisement.getReleaseDate(), 'yyyy', new java.util.Locale('en', 'EN'))}"></span>
+                        </li>
+                        <li class="list-group-item"><b>Сar owners:</b> <span
+                                th:text="${advertisement.getCarOwner()}"></span></li>
+                        <li class="list-group-item"><b>Price:</b> <span class="badge badge-warning"
+                                                                        th:text="${advertisement.getPrice()}">
+                        </span>
+                        </li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-header" style="background-color: #B9BF5E">
+                            Seller info:
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" style="background-color: whitesmoke">
+                                <span th:text="${advertisement.user.name}"></span>
+                            </li>
+                            <li class="list-group-item" style="background-color: whitesmoke">
+                            <span th:text="${advertisement.user.email}"></span>
+                            </li>
+                            <li class="list-group-item" style="background-color: whitesmoke">
+                                <b><img width="15px" height="15px" src="/images/phone.png"/></b>
+                                &nbsp;
+                                <span th:text="${advertisement.user.getPhone()}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <div class="card-body text-center">
+                            Description:
+                        </div>
+                        <p class="card-text" th:text="${advertisement.getDescription()}"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <p>&nbsp;&nbsp;
+                        <tr th:each="photo: ${advertisement.getPhotos()}">
+                            <img th:width="500" th:high="500" th:src="@{|/advertisementPhoto/${photo.getId()}|}">
+                        </tr>
+                    </p>
+                </div>
+                <div class="container" style="border-radius: 5px">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 5px">
+                        <a class="navbar-brand" href="#">
+                            <div th:if="${advertisement.getUser().name == session.user.name}" style="border-radius: 5px">
+                                <a class="btn  btn-secondary" th:href="@{|/soldAdvertisement/${advertisement.id}|}"
+                                   role="button">Sold</a>
+                                <a class="btn  btn-secondary"
+                                   th:href="@{|/editAdvertisement/${advertisement.id}|}"
+                                   role="button">Edit</a>
+                                <a class="btn  btn-secondary" th:href="@{|/removeAdvertisement/${advertisement.id}|}"
+                                   role="button">Remove</a>
+                            </div>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

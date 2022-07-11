@@ -10,7 +10,7 @@ import javax.persistence.RollbackException;
 import java.util.function.Function;
 
 public abstract class GenericPersistence {
-    private final SessionFactory sessionFactory;
+    public final SessionFactory sessionFactory;
 
     public GenericPersistence(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
