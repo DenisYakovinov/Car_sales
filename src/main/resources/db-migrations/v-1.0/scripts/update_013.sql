@@ -1,5 +1,5 @@
-INSERT INTO engine (name) VALUES ('petrol');
-INSERT INTO engine (name) VALUES ('gas');
-INSERT INTO engine (name) VALUES ('diesel');
-INSERT INTO engine (name) VALUES ('hybrid engine');
-INSERT INTO engine (name) VALUES ('electric');
+INSERT INTO engine VALUES (1, 'petrol');
+INSERT INTO engine VALUES (2, 'gas');
+INSERT INTO engine VALUES (3, 'diesel');
+INSERT INTO engine VALUES (4, 'hybrid engine');
+INSERT INTO engine VALUES (5, 'electric');

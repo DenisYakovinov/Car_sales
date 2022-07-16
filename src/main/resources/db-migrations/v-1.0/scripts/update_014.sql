@@ -210,11 +210,11 @@ INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 3);
 
-INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('Astra H', 7, 1) RETURNING id INTO c_id;
+INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('Astra', 7, 1) RETURNING id INTO c_id;
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
 
-INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('Astra H', 7, 3) RETURNING id INTO c_id;
+INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('Astra', 7, 3) RETURNING id INTO c_id;
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
 
@@ -230,7 +230,7 @@ INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('Mokka', 7
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
 
-INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('s-90', 10, 1) RETURNING id INTO c_id;
+INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('S-90', 10, 1) RETURNING id INTO c_id;
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
 
@@ -243,6 +243,29 @@ INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('XC-40', 1
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
 INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 3);
+
+INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('A-Imaginary', 8, 1) RETURNING id INTO c_id;
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 3);
+
+
+INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('A-Imaginary', 8, 3) RETURNING id INTO c_id;
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 3);
+
+INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('Q-Imaginary', 8, 2) RETURNING id INTO c_id;
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 2);
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 3);
+
+
+INSERT INTO car_models (name, car_brand_id, car_body_type_id) VALUES ('Q-Imaginary', 8, 4) RETURNING id INTO c_id;
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 1);
+INSERT INTO link_cars_engines (car_model_id, engine_id) VALUES (c_id, 3);
+
+
 
 END;
 $$
