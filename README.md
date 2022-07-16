@@ -16,7 +16,7 @@
 ### 1. Main page. List of all advertisements.
 ![main](images_examples/main.png)
 ### 2. The page for adding a new advertisement (authenticated users)
-###   2.1 first, user must select a brand (from existing data)
+###   2.1 first, user should select a brand (from existing data)
 ![SelectBrand](images_examples/selectBrand.png)
 ###   2.2 next, user need to choose a model of the car available for the brand
 ![selectCarModel](images_examples/selectCarModel.png)

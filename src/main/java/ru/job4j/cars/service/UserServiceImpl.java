@@ -1,8 +1,12 @@
 package ru.job4j.cars.service;
 
 import org.springframework.stereotype.Service;
+import ru.job4j.cars.exception.EmailReservedException;
+import ru.job4j.cars.exception.PersistenceException;
+import ru.job4j.cars.exception.ServiceException;
+import ru.job4j.cars.exception.UniqueViolationException;
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.persistance.api.UserStore;
+import ru.job4j.cars.repository.api.UserStore;
 import ru.job4j.cars.service.api.UserService;
 
 import java.util.List;
@@ -19,7 +23,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User add(User user) {
-        return userStore.add(user);
+        try {
+            return userStore.add(user);
+        } catch (UniqueViolationException e) {
+            throw new EmailReservedException(e.getMessage(), e);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
     }
 
     @Override

@@ -2,7 +2,7 @@ package ru.job4j.cars.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Photo;
-import ru.job4j.cars.persistance.api.PhotoStore;
+import ru.job4j.cars.repository.api.PhotoStore;
 import ru.job4j.cars.service.api.PhotoService;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package ru.job4j.cars.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Advertisement;
-import ru.job4j.cars.persistance.api.AdvertisementStore;
+import ru.job4j.cars.repository.api.AdvertisementStore;
 import ru.job4j.cars.service.api.AdvertisementService;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package ru.job4j.cars.persistance.api;
+package ru.job4j.cars.repository.api;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -29,7 +29,7 @@ public abstract class GenericPersistence {
             } catch (RollbackException re) {
                 throw new PersistenceException(re.getMessage());
             }
-            throw new PersistenceException(e.getMessage());
+            throw e;
         } finally {
             session.close();
         }

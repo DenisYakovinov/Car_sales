@@ -2,7 +2,7 @@ package ru.job4j.cars.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Engine;
-import ru.job4j.cars.persistance.api.EngineStore;
+import ru.job4j.cars.repository.api.EngineStore;
 import ru.job4j.cars.service.api.EngineService;
 
 import java.util.List;

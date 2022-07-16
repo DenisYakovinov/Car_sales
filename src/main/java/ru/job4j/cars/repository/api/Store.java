@@ -1,4 +1,4 @@
-package ru.job4j.cars.persistance.api;
+package ru.job4j.cars.repository.api;
 
 import java.util.List;
 
