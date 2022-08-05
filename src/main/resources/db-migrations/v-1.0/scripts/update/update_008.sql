@@ -3,7 +3,7 @@ CREATE TABLE advertisements (
     description VARCHAR,
     user_id BIGINT NOT NULL,
     car_model_id BIGINT NOT NULL,
-    isSold BOOLEAN,
+    is_sold BOOLEAN,
     created TIMESTAMP,
     release_date DATE,
     car_mileage INTEGER,

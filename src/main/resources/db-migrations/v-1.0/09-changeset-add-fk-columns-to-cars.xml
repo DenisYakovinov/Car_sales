@@ -12,7 +12,7 @@
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"
-                 path="scripts/update_009.sql"/>
+                 path="scripts/update/update_009.sql"/>
         <rollback>
             <sqlFile dbms="postgresql"
                      encoding="utf8"
@@ -20,7 +20,7 @@
                      relativeToChangelogFile="true"
                      splitStatements="true"
                      stripComments="true"
-                     path="scripts/rollback_009.sql"/>
+                     path="scripts/rollback/rollback_009.sql"/>
         </rollback>
     </changeSet>
 

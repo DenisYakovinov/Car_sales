@@ -18,6 +18,11 @@ public class IndexController {
         this.advertisementService = advertisementService;
     }
 
+    @GetMapping("/")
+    String home(Model model, HttpSession session) {
+        return "redirect:/loginPage";
+    }
+
     @GetMapping("/index")
     public String index(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");

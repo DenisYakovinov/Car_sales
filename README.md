@@ -28,3 +28,26 @@
 ![attributes](images_examples/attributes.png)
 ### 3. detailed description of the ad (the author of the ad can edit, delete or set the status sold)
 ![detail](images_examples/detail.png)
+
+To run the app (need at least java 11), clone the project
+```
+https://github.com/DenisYakovinov/job4j_cars.git
+```
+then using terminal from root directory:<br>
+
+1. run db in docker
+```
+docker-compose up cars_db
+```
+2. then
+```
+mvn install
+```
+3. and run
+```
+java -jar target/job4j_cars-1.0-SNAPSHOT.jar
+```
+4. or
+```
+mvn spring-boot:run
+```

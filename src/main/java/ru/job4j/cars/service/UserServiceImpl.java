@@ -2,7 +2,7 @@ package ru.job4j.cars.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.exception.EmailReservedException;
-import ru.job4j.cars.exception.PersistenceException;
+import ru.job4j.cars.exception.RepositoryException;
 import ru.job4j.cars.exception.ServiceException;
 import ru.job4j.cars.exception.UniqueViolationException;
 import ru.job4j.cars.model.User;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
             return userStore.add(user);
         } catch (UniqueViolationException e) {
             throw new EmailReservedException(e.getMessage(), e);
-        } catch (PersistenceException e) {
+        } catch (RepositoryException e) {
             throw new ServiceException(e.getMessage(), e);
         }
     }

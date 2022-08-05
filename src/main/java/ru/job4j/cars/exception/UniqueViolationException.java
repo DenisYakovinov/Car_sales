@@ -1,6 +1,6 @@
 package ru.job4j.cars.exception;
 
-public class UniqueViolationException extends PersistenceException {
+public class UniqueViolationException extends RepositoryException {
 
     public UniqueViolationException(String message) {
         super(message);

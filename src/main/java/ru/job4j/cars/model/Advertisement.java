@@ -36,7 +36,7 @@ public class Advertisement {
     @JoinColumn(name = "advertisement_id")
     private List<Photo> photos = new ArrayList<>();
 
-    @Column(name = "isSold")
+    @Column(name = "is_sold")
     private boolean isSold;
 
     @Column(name = "created")
