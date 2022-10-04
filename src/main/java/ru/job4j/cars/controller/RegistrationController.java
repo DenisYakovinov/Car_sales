@@ -9,7 +9,6 @@ import ru.job4j.cars.model.User;
 import ru.job4j.cars.service.api.UserService;
 
 @Controller
-@ThreadSafe
 public class RegistrationController {
 
     private final UserService userService;
@@ -29,7 +28,7 @@ public class RegistrationController {
                                @RequestParam(name = "failPass", required = false) Boolean failPass) {
         model.addAttribute("fail", fail != null);
         model.addAttribute("failPass", failPass != null);
-        return "/registration";
+        return "registration";
     }
 
     @ExceptionHandler(EmailReservedException.class)

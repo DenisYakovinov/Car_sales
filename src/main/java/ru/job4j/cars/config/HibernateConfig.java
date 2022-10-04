@@ -9,12 +9,12 @@ import org.hibernate.cfg.AvailableSettings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.DependsOn;
 
 @Configuration
-@PropertySource("datasource.properties")
 public class HibernateConfig {
 
+    @DependsOn("liquibase")
     @Bean(destroyMethod = "close")
     public SessionFactory sessionFactory(BasicDataSource basicDataSource) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -24,11 +24,11 @@ public class HibernateConfig {
         return new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }
 
-    @Bean(destroyMethod = "close")
-    public BasicDataSource basicDataSource(@Value("${jdbc.driver}") String className,
-                                           @Value("${jdbc.url}") String url,
-                                           @Value("${jdbc.username}") String login,
-                                           @Value("${jdbc.password}") String password) {
+    @Bean
+    public BasicDataSource dataSource(@Value("${spring.datasource.driver-class-name}") String className,
+                                 @Value("${spring.datasource.url}") String url,
+                                 @Value("${spring.datasource.username}") String login,
+                                 @Value("${spring.datasource.password}") String password)  {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(className);
         dataSource.setUrl(url);

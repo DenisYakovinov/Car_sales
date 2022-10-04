@@ -29,25 +29,28 @@
 ### 3. detailed description of the ad (the author of the ad can edit, delete or set the status sold)
 ![detail](images_examples/detail.png)
 
-To run the app (need at least java 11), clone the project
+Running via Docker Compose
+
+1. clone the project
 ```
 https://github.com/DenisYakovinov/job4j_cars.git
 ```
-then using terminal from root directory:<br>
-
-1. run db in docker
+2. go to the project root:
 ```
-docker-compose up cars_db
+cd job4j_cars
 ```
-2. then
+3. then build the application using maven:
 ```
 mvn install
 ```
-3. and run
+4. build docker image
 ```
-java -jar target/job4j_cars-1.0-SNAPSHOT.jar
+docker build -t cars .
 ```
-4. or
+5. and run db and app
 ```
-mvn spring-boot:run
+docker-compose up 
 ```
+6. then move to localhost/index
+![docker_compose](images_examples/docker_compose.png)
+![localhost](images_examples/localhost.png)

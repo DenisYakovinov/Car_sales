@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <!-- TODO: REFACTOR TO TH:OBJECT -->
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -145,7 +144,7 @@
                         </div>
                         <div class="form-group">
                             <label for="releaseDate">release date</label>
-                            <input type="date" class="form-control" name="releaseDate" id="releaseDate"/>
+                            <input required type="date" class="form-control" name="releaseDate" id="releaseDate"/>
                         </div>
                         <label for="description">Description</label>
                         <textarea class="form-control" name="description" id="description"></textarea>
@@ -171,14 +170,14 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Car owner:</span>
                                     </div>
-                                    <input type="number" class="form-control" aria-label="car owners" name="carOwner"
+                                    <input required type="number" class="form-control" aria-label="car owners" name="carOwner"
                                            id="carOwner" aria-describedby="inputGroup-sizing-sm" placeholder="number..">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm1">Car mileage: </span>
                                     </div>
-                                    <input type="number" class="form-control" aria-label="car mileage" name="carMileage"
+                                    <input required type="number" class="form-control" aria-label="car mileage" name="carMileage"
                                            id="carMileage" aria-describedby="inputGroup-sizing-sm"
                                            placeholder="number..">
                                 </div>
@@ -186,7 +185,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm2">Price:</span>
                                     </div>
-                                    <input type="number" class="form-control" aria-label="price" name="price"
+                                    <input required type="number" class="form-control" aria-label="price" name="price"
                                            id="price" aria-describedby="inputGroup-sizing-sm" placeholder="amount..">
                                 </div>
 

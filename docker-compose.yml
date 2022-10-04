@@ -14,3 +14,14 @@ services:
     restart: always
     ports:
       - 5432:5432
+  app:
+    image: cars
+    container_name: cars_app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cars_db:5432/cars
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+    ports:
+      - 127.0.0.1:80:8080
+    depends_on:
+      - cars_db
