@@ -15,7 +15,9 @@ services:
     ports:
       - 5432:5432
   app:
-    image: cars
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: cars_app
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://cars_db:5432/cars

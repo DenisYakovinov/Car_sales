@@ -39,17 +39,13 @@ https://github.com/DenisYakovinov/job4j_cars.git
 ```
 cd job4j_cars
 ```
-3. then build the application using maven:
+3. then build the application:
 ```
-mvn install
+docker-compose build
 ```
-4. build docker image
+4. and run db and app
 ```
-docker build -t cars .
-```
-5. and run db and app
-```
-docker-compose up 
+docker-compose up
 ```
 6. then move to localhost/index
 ![docker_compose](images_examples/docker_compose.png)
