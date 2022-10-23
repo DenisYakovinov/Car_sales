@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cars-app
+  labels:
+    app: cars-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cars-app
+  template:
+    metadata:
+      labels:
+        app: cars-app
+    spec:
+      containers:
+        - name: cars-app
+          image: denisyakovinov/job4j_cars
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgresdb-secret
+                  key: postgres-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgresdb-secret
+                  key: postgres-password
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: postgresdb-configmap
+                  key: database_url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cars-app-service
+spec:
+  selector:
+    app: cars-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 32100

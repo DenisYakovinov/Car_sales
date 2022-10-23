@@ -50,3 +50,31 @@ docker-compose up
 6. then move to localhost/index
 ![docker_compose](images_examples/docker_compose.png)
 ![localhost](images_examples/localhost.png)
+
+# Running in a K8s cluster
+* docker, kubectl, minikube must be pre-installed on your computer
+* from the project root:
+
+1. create secret:
+```
+kubectl apply -f k8s/postgresdb-secret.yml
+```
+2. create configMap:
+```
+kubectl apply -f k8s/postgresdb-configmap.yml
+```
+3. create database deployment:
+```
+kubectl apply -f k8s/postgresdb-deployment.yml
+```
+4. create spring boot app deployment:
+```
+kubectl apply -f k8s/carsapp-deployment.yml
+```
+5. get the URL where we can connect to the service from outside.
+```
+minikube service spring-boot-service
+```
+![k8s](images_examples/k8s.png) <br>
+and open login page
+![k8s_1](images_examples/k8s_1.png) <br>
